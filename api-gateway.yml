@@ -1,0 +1,33 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: department-service
+          uri: lb://department-service
+          predicates:
+            - Path=/api/depts/**
+
+        - id: employee-service
+          uri: lb://employee-service
+          predicates:
+            - Path=/api/emps/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: true
