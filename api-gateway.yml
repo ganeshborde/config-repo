@@ -22,6 +22,12 @@ spring:
           uri: lb://employee-service
           predicates:
             - Path=/api/emps/**
+            
+        -  id: auth-service
+           uri: lb://auth-service
+           predicates:
+             - Path=/api/auth/**
+
 
 management:
   endpoints:
