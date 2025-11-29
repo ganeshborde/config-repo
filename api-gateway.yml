@@ -7,12 +7,10 @@ spring:
 
   cloud:
     gateway:
-      server:
-        webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 
       routes:
         - id: department-service
@@ -24,18 +22,18 @@ spring:
           uri: lb://employee-service
           predicates:
             - Path=/api/emps/**
-            
-        -  id: auth-service
-           uri: lb://auth-service
-           predicates:
-             - Path=/api/auth/**
 
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+
   endpoint:
     gateway:
       enabled: true
