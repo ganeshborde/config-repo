@@ -10,26 +10,21 @@ spring:
 
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-
       routes:
+        - id: auth-service
+          uri: http://localhost:9087
+          predicates:
+            - Path=/api/auth/**
+
         - id: department-service
-          uri: lb://department-service
+          uri: http://localhost:9088
           predicates:
             - Path=/api/departments/**
 
         - id: employee-service
-          uri: lb://employee-service
+          uri: http://localhost:9089
           predicates:
             - Path=/api/emps/**
-
-        - id: auth-service
-          uri: lb://auth-service
-          predicates:
-            - Path=/api/auth/**
 
 management:
   endpoints:
