@@ -5,6 +5,9 @@ spring:
   application:
     name: api-gateway
 
+  main:
+    web-application-type: reactive
+
   cloud:
     gateway:
       discovery:
@@ -32,11 +35,9 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
-
+        include: gateway,health,info
   endpoint:
-    health:
-      show-details: always
-
     gateway:
       enabled: true
+    health:
+      show-details: always
