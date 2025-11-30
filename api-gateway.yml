@@ -25,8 +25,6 @@ spring:
           uri: http://localhost:9089
           predicates:
             - Path=/api/emps/**
-             filters:
-            - StripPrefix=2          # removes /api/auth
 
 management:
   endpoints:
